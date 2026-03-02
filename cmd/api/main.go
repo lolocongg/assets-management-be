@@ -82,7 +82,17 @@ func main() {
 			DashboardHandler:    dashboardHandler,
 		},
 	})
-	srv := server.NewServer(r, cfg.Server.Port)
+
+	// Edit port
+	port := os.Getenv("PORT")
+if port == "" {
+	port = cfg.Server.Port
+	if port == "" {
+		port = "8080"
+	}
+}
+
+srv := server.NewServer(r, port)
 
 	go func() {
 		if err := srv.Run(); err != nil && err != http.ErrServerClosed {
