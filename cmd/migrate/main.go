@@ -10,16 +10,18 @@ import (
 
 func main() {
 	_ = godotenv.Load()
+
 	if len(os.Args) < 2 {
 		panic("please provide 'up' or 'down' as argument")
 	}
+
 	cmd := os.Args[1]
-	conn := fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable",
-		os.Getenv("DB_USER"),
-		os.Getenv("DB_PASSWORD"),
-		os.Getenv("DB_HOST"),
-		os.Getenv("DB_PORT"),
-		os.Getenv("DB_NAME"))
+
+	// 🔥 Dùng DATABASE_URL thay vì tự build
+	conn := os.Getenv("DATABASE_URL")
+	if conn == "" {
+		panic("DATABASE_URL is not set")
+	}
 
 	migrationDir := "./internal/database/migrations"
 
