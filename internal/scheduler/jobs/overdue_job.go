@@ -27,7 +27,7 @@ func (j *OverdueJob) Name() string {
 }
 
 func (j *OverdueJob) Schedule() string {
-	return "0 9 * * *"
+	return "* * * * *"
 }
 
 func (j *OverdueJob) Run() {

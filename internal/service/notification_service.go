@@ -5,7 +5,7 @@ import (
 	"log"
 
 	"github.com/davidcm146/assets-management-be.git/internal/error_middleware"
-	"github.com/davidcm146/assets-management-be.git/internal/mailer"
+	email "github.com/davidcm146/assets-management-be.git/internal/mailer"
 	"github.com/davidcm146/assets-management-be.git/internal/model"
 	"github.com/davidcm146/assets-management-be.git/internal/repository"
 )
@@ -79,7 +79,7 @@ func (s *notificationService) SendEmails(ctx context.Context, notifications []*m
 		log.Println("[EMAIL RENDER ERROR]", err)
 		return
 	}
-	err = s.mailProvider.Send(ctx, "Chiefsecurity@wyndhamgrand-phuquoc.com", "Thông báo phiếu mượn quá hạn", body)
+	err = s.mailProvider.Send(ctx, "itsupport2@wyndhamgrand-phuquoc.com", "Thông báo phiếu mượn quá hạn", body)
 
 	if err != nil {
 		log.Println("[EMAIL SEND ERROR]", err)
