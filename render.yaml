@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: assets-management-be
+    runtime: go
+    buildCommand: go build -o app cmd/api/main.go
+    startCommand: ./app
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: GIN_MODE
+        value: release
